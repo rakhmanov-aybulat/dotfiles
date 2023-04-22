@@ -18,8 +18,8 @@ autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%,
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>" lsp server
 
 " Automatically render latex
-autocmd FileType tex map <buffer> <F9> :w<CR>:exec '!pdflatex' shellescape(@%, 1)<CR>
-autocmd FileType tex imap <buffer> <F9> <esc>:w<CR>:exec '!pdflatex' shellescape(@%, 1)<CR>" lsp server
+autocmd FileType tex map <buffer> <F9> :w<CR>:exec '!xelatex' shellescape(@%, 1)<CR>
+autocmd FileType tex imap <buffer> <F9> <esc>:w<CR>:exec '!xelatex' shellescape(@%, 1)<CR>" lsp server
 
 " Lsp server
 lua << EOF
