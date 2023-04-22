@@ -13,7 +13,15 @@ colorscheme gruvbox
 nmap <C-A-n> <F8>
 nmap <C-A-p> <S-F8>
 
-" lsp server
+" Automatically run python code
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>" lsp server
+
+" Automatically render latex
+autocmd FileType tex map <buffer> <F9> :w<CR>:exec '!pdflatex' shellescape(@%, 1)<CR>
+autocmd FileType tex imap <buffer> <F9> <esc>:w<CR>:exec '!pdflatex' shellescape(@%, 1)<CR>" lsp server
+
+" Lsp server
 lua << EOF
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
