@@ -54,10 +54,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
-  vim.keymap.set('n', '[d', vim.lsp.diagnostic.goto_prev, bufopts)
-  vim.keymap.set('n', ']d', vim.lsp.diagnostic.goto_next, bufopts)
-  vim.keymap.set('n', '<space>q', vim.lsp.diagnostic.set_loclist, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
