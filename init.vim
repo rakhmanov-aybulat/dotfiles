@@ -1,4 +1,4 @@
-source $HOME/.config/nvim/vim-plug/plugins.vim
+source $HOME/.config/nvim/vim_plug/plugins.vim
 
 set number
 imap jj <Esc>
