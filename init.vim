@@ -8,6 +8,13 @@ set noswapfile
 set colorcolumn=80
 set textwidth=80
 
+" Tabulation
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+
 " Colorsheme
 colorscheme gruvbox 
 nmap <C-A-n> <F8>
