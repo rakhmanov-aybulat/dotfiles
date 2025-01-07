@@ -6,8 +6,17 @@ vim.opt.swapfile = false
 vim.opt.colorcolumn = '80'
 vim.opt.textwidth = 80
 
-vim.keymap.set('i', 'jj', '<esc>', { noremap = true })
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true })
 vim.keymap.set('i', 'оы', '<Esc>', { noremap = true })
+
+vim.opt.hlsearch = true
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
 -- Tabulation
 vim.opt.tabstop = 4
@@ -65,10 +74,18 @@ local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
+
 require('lspconfig')['pyright'].setup{
   on_attach = on_attach,
   flags = lsp_flags,
 }
+
+require('lspconfig')['lua_ls'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+
+
 require('lspconfig')['texlab'].setup{
   on_attach = on_attach,
   flags = lsp_flags,
