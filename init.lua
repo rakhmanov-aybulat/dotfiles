@@ -1,35 +1,32 @@
-source $HOME/.config/nvim/vim_plug/plugins.vim
+require('vim_plug/plugins')
 
-set number
-imap jj <Esc>
-imap оы <Esc>
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-set noswapfile
-set colorcolumn=80
-set textwidth=80
+vim.opt.number = true
+vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
+vim.opt.swapfile = false
+vim.opt.colorcolumn = '80'
+vim.opt.textwidth = 80
 
-" Tabulation
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
+vim.keymap.set('i', 'jj', '<esc>', { noremap = true })
+vim.keymap.set('i', 'оы', '<Esc>', { noremap = true })
 
-" Colorsheme
-colorscheme gruvbox 
-nmap <C-A-n> <F8>
-nmap <C-A-p> <S-F8>
+-- Tabulation
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
 
-" Automatically run python code
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>" lsp server
+-- Colorsheme
+vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[
+  highlight Normal guibg=none ctermbg=none
+  highlight NonText guibg=none ctermbg=none
+  highlight LineNr guibg=none ctermbg=none
+  highlight EndOfBuffer guibg=none ctermbg=none
+]])
 
-" Automatically render latex
-autocmd FileType tex map <buffer> <F9> :w<CR>:exec '!xelatex' shellescape(@%, 1)<CR>
-autocmd FileType tex imap <buffer> <F9> <esc>:w<CR>:exec '!xelatex' shellescape(@%, 1)<CR>" lsp server
 
-" Lsp server
-lua << EOF
+-- Lsp server
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -55,7 +52,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
@@ -69,18 +66,15 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
+  on_attach = on_attach,
+  flags = lsp_flags,
 }
 require('lspconfig')['texlab'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
+  on_attach = on_attach,
+  flags = lsp_flags,
 }
 
-EOF
-
-" Autocomplete
-lua << EOF
+-- Autocomplete
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -172,4 +166,4 @@ cmp.setup({
     end, {'i', 's'}),
   },
 })
-EOF
+
