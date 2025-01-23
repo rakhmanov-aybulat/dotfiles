@@ -34,6 +34,12 @@ vim.cmd([[
   highlight EndOfBuffer guibg=none ctermbg=none
 ]])
 
+--Telescope
+require('telescope').load_extension('fzf')
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', ',f', builtin.find_files, {})
+vim.keymap.set('n', ',g', builtin.live_grep, {})
+
 
 -- Lsp server
 -- Mappings.

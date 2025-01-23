@@ -18,5 +18,9 @@ vim.call('plug#begin')
 	Plug('hrsh7th/cmp-buffer')
 	Plug('saadparwaiz1/cmp_luasnip')
 
+    --Telescope
+    Plug('nvim-lua/plenary.nvim')
+    Plug('nvim-telescope/telescope.nvim', { tag = '0.1.8' })
+    Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 vim.call('plug#end')
 
