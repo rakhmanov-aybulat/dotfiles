@@ -41,6 +41,24 @@ vim.keymap.set('n', ',f', builtin.find_files, {})
 vim.keymap.set('n', ',g', builtin.live_grep, {})
 
 
+-- Set the clipboard to use the system clipboard
+vim.opt.clipboard = 'unnamedplus'
+
+-- Use xclip instead of wl-clipboard
+-- for yanking text to the system clipboard when working in a wsl
+-- vim.g.clipboard = {
+--   name = 'xclip',
+--   copy = {
+--     ['+'] = 'xclip -selection clipboard',
+--     ['*'] = 'xclip -selection primary',
+--   },
+--   paste = {
+--     ['+'] = 'xclip -selection clipboard -o',
+--     ['*'] = 'xclip -selection primary -o',
+--   },
+--   cache_enabled = 0,
+-- }
+
 -- Lsp server
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
