@@ -81,6 +81,7 @@ local lsp_flags = {
 }
 
 local lspconfig = require('lspconfig')
+
 lspconfig['pyright'].setup{
   on_attach = on_attach,
   flags = lsp_flags,
@@ -96,7 +97,10 @@ lspconfig['texlab'].setup{
   flags = lsp_flags,
 }
 
-require('lspconfig')['ts_ls'].setup {}
+lspconfig['ts_ls'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
 
 -- Autocomplete
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
