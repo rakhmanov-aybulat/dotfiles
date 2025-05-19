@@ -7,9 +7,6 @@ vim.call('plug#begin')
     Plug('xolox/vim-misc')
     Plug('xolox/vim-colorscheme-switcher')
 
-    -- Lsp
-    Plug ('neovim/nvim-lspconfig', { ['tag'] = 'v1.8.0'} )
-
     -- Autocomplete
     Plug('hrsh7th/nvim-cmp')
     Plug('hrsh7th/cmp-nvim-lsp')
