@@ -7,6 +7,10 @@ vim.opt.swapfile = false
 vim.opt.colorcolumn = '80'
 vim.opt.textwidth = 80
 
+vim.opt.relativenumber = true
+
+vim.g.netrw_banner = 0
+
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true })
 vim.keymap.set('i', 'оы', '<Esc>', { noremap = true })
 
@@ -68,7 +72,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Lsp
-vim.lsp.enable({ 'lua_ls', 'pyright', 'phpactor' })
+vim.lsp.enable({ 'lua_ls', 'pyright', 'phpactor', 'html', 'ts_ls'})
 
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
