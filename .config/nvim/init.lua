@@ -49,7 +49,7 @@ vim.keymap.set('n', ',fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 
 -- TODO: fix telescope borders issue
--- vim.o.winborder = 'rounded'
+vim.o.winborder = 'rounded'
 --
 
 -- Diagnostics
@@ -72,7 +72,14 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Lsp
-vim.lsp.enable({ 'lua_ls', 'pyright', 'phpactor', 'html', 'ts_ls'})
+vim.lsp.enable({
+    'lua_ls',
+    'pyright',
+    'phpactor',
+    'html',
+    'ts_ls',
+    'emmet_language_server'
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
@@ -133,8 +140,10 @@ cmp.setup({
     window = {
         completion = {
             winhighlight = 'Normal:Normal',
+            border = 'rounded'
         },
         documentation = {
+            winhighlight = 'Normal:Normal',
             border = 'rounded',
         }
     },
