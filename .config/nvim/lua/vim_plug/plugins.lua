@@ -20,5 +20,8 @@ vim.call('plug#begin')
     Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
     Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 
+    --Treeshitter
+    Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+
 vim.call('plug#end')
 
