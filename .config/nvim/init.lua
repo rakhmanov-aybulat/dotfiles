@@ -30,82 +30,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 
--- Colorsheme
-vim.cmd([[colorscheme gruvbox]])
-vim.cmd([[
-    highlight Normal guibg=none ctermbg=none
-    highlight NonText guibg=none ctermbg=none
-    highlight LineNr guibg=none ctermbg=none
-    highlight EndOfBuffer guibg=none ctermbg=none
-]])
 
-vim.opt.termguicolors = true
-vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'NONE', fg = '#ffffff' })
-vim.api.nvim_set_hl(0, 'PmenuSel', { bg = '#3c3836', fg = '#ffffff' })
-vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE' })
-
---Treeshitter
-require('nvim-treesitter.configs').setup {
-  ensure_installed = {
-    'python',
-    'php',
-    'typescript',
-    'javascript',
-    'lua',
-    'c',
-    'vim',
-    'vimdoc',
-    'query',
-    'markdown',
-    'markdown_inline'
-  },
-  sync_install = false,
-  auto_install = false,
-
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
-
---Telescope
-local telescope = require('telescope')
-telescope.setup {
-  defaults = {
-    layout_strategy = 'horizontal',
-    layout_config = {
-      horizontal = {
-        height = 0.95,
-        preview_cutoff = 120,
-        preview_width = 0.45,
-        prompt_position = 'bottom',
-        width = 0.92,
-      },
-    }
-  },
-  extensions = {
-    fzf = {
-      fuzzy = true,
-      override_generic_sorter = true,
-      override_file_sorter = true,
-      case_mode = 'smart_case',
-    }
-  }
-}
-
-telescope.load_extension('fzf')
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', ',ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', ',fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', ',fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', ',fh', builtin.help_tags, { desc = 'Telescope help tags' })
-
-
-
--- TODO: fix telescope borders issue
 vim.o.winborder = 'rounded'
---
 
 -- Diagnostics
 vim.diagnostic.config({
@@ -151,7 +77,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wl', function()
@@ -266,3 +192,4 @@ cmp.setup({
     end, { 'i', 's' }),
   },
 })
+

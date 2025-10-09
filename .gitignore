@@ -1,6 +1,13 @@
 /*
 
-!/.gitignore
+!.gitignore
 
-!/.config
-!/.config/**
+!.config/
+
+.config/*
+
+!.config/nvim/
+!.config/alacritty/
+!.config/hypr/
+!.config/tmux/
+!.config/rofi/

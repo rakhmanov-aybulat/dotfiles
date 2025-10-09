@@ -1,5 +1,5 @@
 [font]
-size = 18
+size = 17
 
 [window]
 startup_mode = "Maximized"
@@ -18,8 +18,4 @@ LANG = "en_US.UTF-8"
 
 [colors.primary]
 background = "#000000"
-
-[terminal.shell]
-program = "wsl"
-args = [ "-d", "Ubuntu", "--cd", "~" ]
 

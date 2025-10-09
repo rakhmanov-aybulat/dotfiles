@@ -23,5 +23,8 @@ vim.call('plug#begin')
     --Treeshitter
     Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
+    --Harpoon
+    Plug( 'ThePrimeagen/harpoon', { ['branch'] = 'harpoon2', ['dependencies'] = { 'nvim-lua/plenary.nvim' }})
+
 vim.call('plug#end')
 
