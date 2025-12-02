@@ -59,7 +59,8 @@ vim.lsp.enable({
   'phpactor',
   'html',
   'ts_ls',
-  'emmet_language_server'
+  'emmet_language_server',
+  'tinymist'
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {

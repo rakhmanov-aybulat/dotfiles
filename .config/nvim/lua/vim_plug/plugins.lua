@@ -6,6 +6,7 @@ vim.call('plug#begin')
     Plug('flazz/vim-colorschemes')
     Plug('xolox/vim-misc')
     Plug('xolox/vim-colorscheme-switcher')
+    Plug('rebelot/kanagawa.nvim')
 
     -- Autocomplete
     Plug('hrsh7th/nvim-cmp')
@@ -25,6 +26,9 @@ vim.call('plug#begin')
 
     --Harpoon
     Plug( 'ThePrimeagen/harpoon', { ['branch'] = 'harpoon2', ['dependencies'] = { 'nvim-lua/plenary.nvim' }})
+
+    -- Img-clip
+    Plug('HakonHarnes/img-clip.nvim', {['opts'] = {}})
 
 vim.call('plug#end')
 

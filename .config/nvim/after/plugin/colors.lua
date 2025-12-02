@@ -8,6 +8,6 @@ vim.cmd([[
 
 vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'NONE', fg = '#ffffff' })
-vim.api.nvim_set_hl(0, 'PmenuSel', { bg = '#3c3836', fg = '#ffffff' })
+vim.api.nvim_set_hl(0, 'PmenuSel', { bg = 'NONE', fg = '#ffffff' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE' })
 
