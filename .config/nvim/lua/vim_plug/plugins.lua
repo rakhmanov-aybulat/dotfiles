@@ -18,7 +18,7 @@ vim.call('plug#begin')
 
     --Telescope
     Plug('nvim-lua/plenary.nvim')
-    Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
+    Plug('nvim-telescope/telescope.nvim')
     Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 
     --Treeshitter

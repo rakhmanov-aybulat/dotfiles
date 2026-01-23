@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+ICONS="$HOME/.config/hypr/icons"
+
+get_backlight() {
+    current=$(brightnessctl g)
+    max=$(brightnessctl m)
+    percent=$(( current * 100 / max ))
+    echo "$percent"
+}
+
+send_notification() {
+    local icon=$1
+    local message=$2
+	notify-send \
+        -h string:x-canonical-private-synchronous:sys-notify \
+        -u low \
+        -i "$icon" \
+        "$message"
+}
+
+get_icon() {
+	current="$(get_backlight)"
+    if ((current <= 8)); then
+		echo "$ICONS/brightness-1.png"
+    elif ((current <= 17)); then
+		echo "$ICONS/brightness-2.png"
+    elif ((current <= 25)); then
+		echo "$ICONS/brightness-3.png"
+    elif ((current <= 33)); then
+		echo "$ICONS/brightness-4.png"
+    elif ((current <= 41)); then
+		echo "$ICONS/brightness-5.png"
+    elif ((current <= 50)); then
+		echo "$ICONS/brightness-6.png"
+    elif ((current <= 58)); then
+		echo "$ICONS/brightness-7.png"
+    elif ((current <= 67)); then
+		echo "$ICONS/brightness-8.png"
+    elif ((current <= 75)); then
+		echo "$ICONS/brightness-9.png"
+    elif ((current <= 83)); then
+		echo "$ICONS/brightness-10.png"
+    elif ((current <= 92)); then
+		echo "$ICONS/brightness-11.png"
+    elif ((current <= 100)); then
+		echo "$ICONS/brightness-12.png"
+	fi
+}
+
+inc_backlight() {
+	brightnessctl set 5%+
+    send_notification "$(get_icon)" "Brightness : $(get_backlight)%"
+}
+
+dec_backlight() {
+	brightnessctl set 5%-
+    send_notification "$(get_icon)" "Brightness : $(get_backlight)%"
+}
+
+case "$1" in
+    --inc)inc_backlight;;
+    --dec)dec_backlight;;
+esac
+
