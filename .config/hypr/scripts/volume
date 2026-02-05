@@ -3,11 +3,13 @@
 ICONS="$HOME/.config/hypr/icons"
 
 get_volume() {
-    wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'
+    IFS=' ' read -r _ vol _ < <(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+    local percent=$((10#${vol//./}))
+    echo "$percent"
 }
 
 get_icon() {
-	local current=$(get_volume)
+    local current=$(get_volume)
     if (( current == 0 )); then
         echo "$ICONS/volume-mute.png"
     elif (( current <= 30 )); then
@@ -22,7 +24,7 @@ get_icon() {
 send_notification() {
     local icon=$1
     local message=$2
-	notify-send \
+    notify-send \
         -h string:x-canonical-private-synchronous:sys-notify \
         -u low \
         -i "$icon" \
@@ -46,9 +48,9 @@ toggle_mute() {
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
     if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q 'MUTED'; then
-        send_notification "$ICONS/volume-mute.png" "Volume Switched OFF"
+        send_notification "$ICONS/volume-mute.png" 'Volume Switched OFF'
     else
-        send_notification "$(get_icon)" "Volume Switched ON"
+        send_notification "$(get_icon)" 'Volume Switched ON'
     fi
 }
 
@@ -56,9 +58,9 @@ toggle_mic() {
     wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
     if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q 'MUTED'; then
-        send_notification "$ICONS/microphone-mute.png" "Microphone Switched OFF"
+        send_notification "$ICONS/microphone-mute.png" 'Microphone Switched OFF'
     else
-        send_notification "$ICONS/microphone.png" "Microphone Switched ON"
+        send_notification "$ICONS/microphone.png" 'Microphone Switched ON'
     fi
 }
 
@@ -67,5 +69,6 @@ case "$1" in
     --dec) dec_volume;;
     --toggle) toggle_mute;;
     --toggle-mic) toggle_mic;;
+    *) echo "Usage: $0 [--inc|--dec|--toggle|--toggle-mic]" >&2; exit 1 ;;
 esac
 
