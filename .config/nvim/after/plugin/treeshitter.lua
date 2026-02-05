@@ -10,7 +10,8 @@ require('nvim-treesitter').setup {
     'vimdoc',
     'query',
     'markdown',
-    'markdown_inline'
+    'markdown_inline',
+    'bash'
   },
   sync_install = false,
   auto_install = false,

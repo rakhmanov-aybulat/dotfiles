@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+capacity=$(< /sys/class/power_supply/BAT0/capacity)
+icon='battery-level-100-symbolic'
+notify-send \
+    -h string:x-canonical-private-synchronous:sys-notify \
+    -u low \
+    -i $icon \
+    -t 3000 \
+    "    ${capacity:-unknown}%"

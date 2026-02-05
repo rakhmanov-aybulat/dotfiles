@@ -8,6 +8,7 @@ vim.opt.colorcolumn = '80'
 vim.opt.textwidth = 80
 
 vim.opt.relativenumber = true
+vim.opt.laststatus = 1
 
 vim.g.netrw_banner = 0
 
@@ -31,7 +32,7 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 
 
-vim.o.winborder = 'rounded'
+vim.opt.winborder = 'rounded'
 
 -- Diagnostics
 vim.diagnostic.config({
@@ -56,10 +57,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 vim.lsp.enable({
   'lua_ls',
   'pyright',
-  'phpactor',
   'html',
-  'ts_ls',
-  'emmet_language_server',
   'tinymist'
 })
 

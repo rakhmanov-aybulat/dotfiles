@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+notify-send \
+    -h string:x-canonical-private-synchronous:sys-notify \
+    -u low \
+    -i preferences-system-time-symbolic \
+    -t 3000 \
+    "    $(printf '%(%H:%M %A %d %B)T')"
+
