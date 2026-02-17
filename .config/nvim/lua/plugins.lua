@@ -3,10 +3,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 
     -- Colorscheme
-    Plug('flazz/vim-colorschemes')
-    Plug('xolox/vim-misc')
-    Plug('xolox/vim-colorscheme-switcher')
-    Plug('rebelot/kanagawa.nvim')
+    Plug('catppuccin/nvim')
 
     -- Autocomplete
     Plug('hrsh7th/nvim-cmp')

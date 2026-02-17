@@ -1,5 +1,4 @@
-require('nvim-treesitter').setup {
-  ensure_installed = {
+require('nvim-treesitter').install {
     'python',
     'php',
     'typescript',
@@ -12,13 +11,5 @@ require('nvim-treesitter').setup {
     'markdown',
     'markdown_inline',
     'bash'
-  },
-  sync_install = false,
-  auto_install = false,
-
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
 }
 

@@ -1,4 +1,4 @@
-require('vim_plug/plugins')
+require('plugins')
 
 vim.opt.number = true
 vim.opt.langmap =
@@ -57,8 +57,8 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 vim.lsp.enable({
   'lua_ls',
   'pyright',
-  'html',
-  'tinymist'
+  'tinymist',
+  'ccls'
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
