@@ -9,9 +9,7 @@ vim.call('plug#begin')
     Plug('hrsh7th/nvim-cmp')
     Plug('hrsh7th/cmp-nvim-lsp')
     Plug('hrsh7th/cmp-path')
-    Plug('L3MON4D3/LuaSnip')
     Plug('hrsh7th/cmp-buffer')
-    Plug('saadparwaiz1/cmp_luasnip')
 
     --Telescope
     Plug('nvim-lua/plenary.nvim')

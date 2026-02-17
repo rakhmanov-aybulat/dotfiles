@@ -1,24 +1,18 @@
 vim.opt.termguicolors = true
 
 require("catppuccin").setup({
+    flavour = "macchiato",
     transparent_background = true,
     float = {
         transparent = true,
     },
+    styles = {
+        comments = {},
+    },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false
+    },
 })
 
 vim.cmd.colorscheme "catppuccin"
-
--- vim.cmd.colorscheme "default"
--- vim.cmd([[
---     highlight Normal guibg=none ctermbg=none
---     highlight NonText guibg=none ctermbg=none
---     highlight LineNr guibg=none ctermbg=none
---     highlight EndOfBuffer guibg=none ctermbg=none
--- ]])
---
--- vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'NONE', fg = '#ffffff' })
--- vim.api.nvim_set_hl(0, 'PmenuSel', { bg = 'NONE', fg = '#ffffff' })
--- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE' })
--- vim.api.nvim_set_hl(0, 'LineNr', { fg = '#aa9b6d' })
-
