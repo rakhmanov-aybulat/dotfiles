@@ -6,6 +6,7 @@ require("catppuccin").setup({
     float = {
         transparent = true,
     },
+    no_italic = true,
     styles = {
         comments = {},
     },

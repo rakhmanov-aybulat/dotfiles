@@ -1,10 +1,62 @@
 #!/usr/bin/env bash
 
-capacity=$(< /sys/class/power_supply/BAT0/capacity)
-icon='battery-level-100-symbolic'
+BATTERY_DIR="/sys/class/power_supply/BAT0"
+if [[ ! -d "$BATTERY_DIR" ]]; then
+    BATTERY_DIR="/sys/class/power_supply/BAT1"
+fi
+
+if [[ ! -d "$BATTERY_DIR" ]]; then
+    exit 1
+fi
+
+CAPACITY_FILE="${BATTERY_DIR}/capacity"
+STATUS_FILE="${BATTERY_DIR}/status"
+
+if [[ -f "$CAPACITY_FILE" ]]; then
+    capacity=$(< "$CAPACITY_FILE")
+else
+    capacity="N/A"
+fi
+
+status="Discharging"
+if [[ -f "$STATUS_FILE" ]]; then
+    status=$(< "$STATUS_FILE")
+fi
+
+suffix=""
+if [[ "$status" == "Charging" ]]; then
+    suffix="-charging"
+elif [[ "$status" == "Full" ]]; then
+    suffix=""
+fi
+
+if [[ "$capacity" -ge 90 ]]; then
+    icon="battery-full${suffix}"
+elif [[ "$capacity" -ge 70 ]]; then
+    icon="battery-level-80${suffix}-symbolic"
+elif [[ "$capacity" -ge 50 ]]; then
+    icon="battery-level-60${suffix}-symbolic"
+elif [[ "$capacity" -ge 30 ]]; then
+    icon="battery-level-40${suffix}-symbolic"
+elif [[ "$capacity" -ge 15 ]]; then
+    icon="battery-level-20${suffix}-symbolic"
+else
+    if [[ "$suffix" == "-charging" ]]; then
+        icon="battery-level-0-charging-symbolic"
+    else
+        icon="battery-level-0-symbolic"
+    fi
+fi
+
+if [[ "$capacity" == "N/A" ]]; then
+    message="Battery status unavailable"
+else
+    message="${capacity}%"
+fi
+
 notify-send \
     -h string:x-canonical-private-synchronous:sys-notify \
     -u low \
-    -i $icon \
-    -t 3000 \
-    "    ${capacity:-unknown}%"
+    -i "$icon" \
+    "$message"
+
